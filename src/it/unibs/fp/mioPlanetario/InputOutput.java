@@ -1,5 +1,5 @@
-package src.it.unibs.fp.mioPlanetario;
-
 public class InputOutput {
-    
+    public void inizializza() {
+        Menu menu = new Menu();
+    }
 }
