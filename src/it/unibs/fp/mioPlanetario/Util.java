@@ -92,15 +92,31 @@ public class Util {
         System.out.println(PIANETA_NON_TROVATO);
     }
 
-    public double calcCDM(Stella stella) {
-        double cdm = 0;
+    public void calcCDM(Stella stella) {
+        double massaTotale = 0;
+        double sommaXMassa = 0;
+        double sommaYMassa = 0;
+
         for (Pianeta pianeta : stella.getListaPianeti()) {
-            cdm += pianeta.getMassa() * Math.sqrt(Math.pow(pianeta.getCoordX(), 2) + Math.pow(pianeta.getCoordY(), 2));
+            massaTotale += pianeta.getMassa();
+            sommaXMassa += pianeta.getMassa() * pianeta.getCoordX();
+            sommaYMassa += pianeta.getMassa() * pianeta.getCoordY();
             for (Luna luna : pianeta.getListaLune()) {
-                cdm += luna.getMassa() * Math.sqrt(Math.pow(luna.getCoordX(), 2) + Math.pow(luna.getCoordY(), 2));
+            massaTotale += luna.getMassa();
+            sommaXMassa += luna.getMassa() * luna.getCoordX();
+            sommaYMassa += luna.getMassa() * luna.getCoordY();
             }
         }
-        return cdm;
+
+        if (massaTotale == 0) {
+            System.out.println("Il sistema non ha massa totale.");
+            return;
+        }
+
+        double centroDiMassaX = sommaXMassa / massaTotale;
+        double centroDiMassaY = sommaYMassa / massaTotale;
+
+        System.out.println("Il centro di massa del sistema è: (" + centroDiMassaX + ", " + centroDiMassaY + ")");
     }
 
     public int èPresente(Stella stella) {
