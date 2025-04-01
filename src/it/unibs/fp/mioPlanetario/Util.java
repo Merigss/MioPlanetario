@@ -11,6 +11,10 @@ public class Util {
         double coordx=InputData.readDouble("Inserisci la coordinata x");
         double coordy = InputData.readDouble("Inserisci la coordinata y");
         int id= InputData.readInteger("Inserisci l'id della luna");
+        if (!controllaId(id, stella)) {
+            System.out.println("Errore: ID già presente. Operazione annullata.");
+            return;
+        }
         int idPianetaRif=InputData.readInteger("Inserisci l'id del pianeta di riferimento della luna");
         for (Pianeta pianeta : stella.getListaPianeti()) {
             if (pianeta.getId() == idPianetaRif) {
@@ -43,7 +47,10 @@ public class Util {
         double coordx=InputData.readDouble("Inserisci la coordinata x");
        double coordy = InputData.readDouble("Inserisci la coordinata y");
         int id= InputData.readInteger("Inserisci l'id del pianeta");
-
+        if (!controllaId(id, stella)) {
+            System.out.println("Errore: ID già presente. Operazione annullata.");
+            return;
+        }
 
         Pianeta pianeta = new Pianeta(nome, massa, coordx, coordy, id);
         stella.addPianeta(pianeta);
@@ -127,8 +134,25 @@ public class Util {
         return 0;
     }
 
+    public boolean controllaId(int id,Stella stella){
+        for (Pianeta pianeta : stella.getListaPianeti()) {
+            if (pianeta.getId() == id) {
+            return false; // ID già presente in un pianeta
+            }
+            for (Luna luna : pianeta.getListaLune()) {
+            if (luna.getId() == id) {
+                return false; // ID già presente in una luna
+            }
+            }
+        }
+        return true; // ID non presente
+        
+
+    }
+
     
     //limite di 26000 pianeti
+
     // limite di 5000 lune
 
 
