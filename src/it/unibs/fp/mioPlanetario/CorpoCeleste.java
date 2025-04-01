@@ -2,15 +2,16 @@
 
 public class CorpoCeleste {
     private String nome;
-    private double massa; // in kg
-    private double coordX; // in km
-    private double coordY; // in km
+    private double massa; 
+    private double coordX; 
+    private double coordY; 
     private int id;
 
     public CorpoCeleste(String _nome, double _massa, double _coordX, double _coordY, int _id) {
         this.nome = _nome;
         this.massa = _massa;
         this.coordX = _coordX;
+        this.coordY = _coordY;
         this.id = _id;
     }
 

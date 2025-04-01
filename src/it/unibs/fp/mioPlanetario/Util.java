@@ -35,7 +35,6 @@ public class Util {
 
         if (!controllaId(id, stella)) {
             System.out.println(ERRORE_ID_PRESENTE);
-            return;
         }
 
         int idPianetaRif = InputData.readInteger(INSERISCI_ID_PIANETA_RIF);
@@ -43,9 +42,13 @@ public class Util {
             if (pianeta.getId() == idPianetaRif) {
                 pianeta.aggiungiLuna(new Luna(nome, massa, coordx, coordy, id, pianeta));
                 System.out.println(LUNA_AGGIUNTA);
+                System.out.println("Nome: " + nome + ", Massa: " + massa + ", Coordinate: (" + coordx + ", " + coordy + "), ID: " + id);
+                System.out.println("Pianeta di riferimento: " + pianeta.getNome() + ", ID: " + idPianetaRif);
                 return;
             }
         }
+
+        
     }
 
     public void rimuoviLuna(Stella stella) {
@@ -77,6 +80,7 @@ public class Util {
 
         Pianeta pianeta = new Pianeta(nome, massa, coordx, coordy, id, stella);
         stella.addPianeta(pianeta);
+        System.out.println("Pianeta aggiunto con successo: Nome - " + nome + ", Massa - " + massa + ", Coordinate - (" + coordx + ", " + coordy + "), ID - " + id);
     }
 
     public void rimuoviPianeta(Stella stella) {
@@ -93,30 +97,26 @@ public class Util {
     }
 
     public void calcCDM(Stella stella) {
-        double massaTotale = 0;
-        double sommaXMassa = 0;
-        double sommaYMassa = 0;
+        double massaTotale = stella.getMassa();
+        double sommaPonderataX = stella.getCoordX() * stella.getMassa();
+        double sommaPonderataY = stella.getCoordY() * stella.getMassa();
 
         for (Pianeta pianeta : stella.getListaPianeti()) {
             massaTotale += pianeta.getMassa();
-            sommaXMassa += pianeta.getMassa() * pianeta.getCoordX();
-            sommaYMassa += pianeta.getMassa() * pianeta.getCoordY();
+            sommaPonderataX += pianeta.getCoordX() * pianeta.getMassa();
+            sommaPonderataY += pianeta.getCoordY() * pianeta.getMassa();
+
             for (Luna luna : pianeta.getListaLune()) {
             massaTotale += luna.getMassa();
-            sommaXMassa += luna.getMassa() * luna.getCoordX();
-            sommaYMassa += luna.getMassa() * luna.getCoordY();
+            sommaPonderataX += luna.getCoordX() * luna.getMassa();
+            sommaPonderataY += luna.getCoordY() * luna.getMassa();
             }
         }
 
-        if (massaTotale == 0) {
-            System.out.println("Il sistema non ha massa totale.");
-            return;
-        }
+        double centroX = sommaPonderataX / massaTotale;
+        double centroY = sommaPonderataY / massaTotale;
 
-        double centroDiMassaX = sommaXMassa / massaTotale;
-        double centroDiMassaY = sommaYMassa / massaTotale;
-
-        System.out.println("Il centro di massa del sistema è: (" + centroDiMassaX + ", " + centroDiMassaY + ")");
+        System.out.println("Centro di massa: (" + centroX + ", " + centroY + ")");
     }
 
     public int èPresente(Stella stella) {
