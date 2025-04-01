@@ -3,26 +3,14 @@ import it.kibo.fp.lib.Menu;
 
 public class InputOutput {
 
-    private int scelta;
-    private Util util = new Util();
-    
-    public Stella inizializza(){
-        System.out.println("Benvenuto nel sistema di gestione del sistema solare!");
-        System.out.println("Iniziamo inserendo i dati della stella");
-        String nome = InputData.readNonEmptyString("Inserisci il nome della stella: ",true);
-        double massa = InputData.readDouble("Inserisci la massa della stella: ");
-        double coordX = 0;
-        double coordY = 0;
-        int id = InputData.readInteger("Inserisci l'id della stella: ");
-        Stella stella = new Stella(nome, massa, coordX, coordY, id);
-        return stella;
+    private static final String WELCOME_MESSAGE = "Benvenuto nel sistema di gestione del sistema solare!";
+    private static final String STAR_DATA_PROMPT = "Iniziamo inserendo i dati della stella";
+    private static final String STAR_NAME_PROMPT = "Inserisci il nome della stella: ";
+    private static final String STAR_MASS_PROMPT = "Inserisci la massa della stella: ";
+    private static final String STAR_ID_PROMPT = "Inserisci l'id della stella: ";
 
-    }
-  
-    
-
-    Menu menu = new Menu("Menu Stellare", new String[] 
-    {
+    private static final String MENU_TITLE = "Menu Stellare";
+    private static final String[] MENU_OPTIONS = {
         "Aggiungi Pianeta",
         "Rimuovi Pianeta",
         "Aggiungi Luna",
@@ -30,61 +18,54 @@ public class InputOutput {
         "Calcola CDM",
         "Identifica Pianeta di Riferimento di una luna",
         "Identifica percorso luna",
-        "Controlla Presenza Oggetto",
-    },true,true,true);
+        "Controlla Presenza Oggetto"
+    };
 
-    
-    public void iniziaMenu(Stella stella){
-    do {
-        scelta = menu.choose();
-        switch (scelta) {
+    private int scelta;
+    private Util util = new Util();
 
-            case 1:
-                util.aggiungiPianeta(stella);
-                // Aggiungi Pianeta
-                break;
+    public Stella inizializza() {
+        System.out.println(WELCOME_MESSAGE);
+        System.out.println(STAR_DATA_PROMPT);
+        String nome = InputData.readNonEmptyString(STAR_NAME_PROMPT, true);
+        double massa = InputData.readDouble(STAR_MASS_PROMPT);
+        double coordX = 0;
+        double coordY = 0;
+        int id = InputData.readInteger(STAR_ID_PROMPT);
+        return new Stella(nome, massa, coordX, coordY, id);
+    }
 
-            case 2:
-                util.rimuoviPianeta(stella);
-                // Rimuovi Pianeta
-                break;
+    private Menu menu = new Menu(MENU_TITLE, MENU_OPTIONS, true, true, true);
 
-            case 3:
-                util.aggiungiLuna(stella);
-
-                // Aggiungi Luna
-                break;
-
-            case 4:
-                util.rimuoviLuna(stella);
-                // Rimuovi Luna
-                break;
-
-            case 5:
-                util.calcCDM(stella);
-                // Calcola CDM
-                break;
-
-            case 6:
-                util.pianetarifLuna(stella);
-                // Identifica Pianeta di Riferimento di una luna
-                break;
-
-            case 7:
-                util.ritornaPercorsoLuna(stella);
-
-                // Identifica percorso luna
-                break;
-
-            case 8:
-                util.èPresente(stella);
-                // Controlla Presenza Oggetto
-                break;
-            
-        }
-
-    }while(scelta !=0);
-}
-
-    
+    public void iniziaMenu(Stella stella) {
+        do {
+            scelta = menu.choose();
+            switch (scelta) {
+                case 1:
+                    util.aggiungiPianeta(stella);
+                    break;
+                case 2:
+                    util.rimuoviPianeta(stella);
+                    break;
+                case 3:
+                    util.aggiungiLuna(stella);
+                    break;
+                case 4:
+                    util.rimuoviLuna(stella);
+                    break;
+                case 5:
+                    util.calcCDM(stella);
+                    break;
+                case 6:
+                    util.pianetarifLuna(stella);
+                    break;
+                case 7:
+                    util.ritornaPercorsoLuna(stella);
+                    break;
+                case 8:
+                    util.èPresente(stella);
+                    break;
+            }
+        } while (scelta != 0);
+    }
 }
