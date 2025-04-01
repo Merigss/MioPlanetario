@@ -8,10 +8,9 @@ public class Pianeta extends CorpoCeleste{
     private Stella stellaRif;
 
 
-    public Pianeta(String _nome, double _massa, double _coordX, double _coordY, int _id, Stella _stellaRif) {
+    public Pianeta(String _nome, double _massa, double _coordX, double _coordY, int _id) {
         super(_nome, _massa, _coordX, _coordY, _id);
-        this.stellaRif = _stellaRif;
-        //TODO Auto-generated constructor stub
+        
     }
 
     public void aggiungiLuna(Luna luna) {

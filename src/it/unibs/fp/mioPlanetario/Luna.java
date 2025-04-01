@@ -10,7 +10,7 @@ extends CorpoCeleste  {
         super(_nome, _massa, _coordX, _coordY, _id);
         this.pianetaRif = _pianetaRif;
         this.percorso = "Il percorso della luna "+_nome+" è "+_pianetaRif.getStellaRif()+"->"+_pianetaRif.getNome()+"->"+_nome; ;
-        //TODO Auto-generated constructor stub
+    
     }
     public Pianeta getPianetaRif() {
         return pianetaRif;
