@@ -1,6 +1,6 @@
 {
     "java.project.referencedLibraries": [
-        "c:\\Users\\Utente\\Downloads\\kibofplib-1.0-javadoc.jar"
+        "src/it/unibs/fp/mioPlanetario/lib/kibofplib-1.0.jar"
     ],
     "java.project.sourcePaths": [
         "src\\it\\unibs\\fp\\mioPlanetario"

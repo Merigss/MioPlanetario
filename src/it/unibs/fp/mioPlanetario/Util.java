@@ -1,3 +1,4 @@
+import it.kibo.fp.lib.InputData;
 
 public class Util {
 
@@ -22,11 +23,25 @@ public class Util {
         return 0;
     }
 
-    public int getRotta(){
-        return 0;
+
+    public void creaStella(){
+        String nome = InputData.readNonEmptyString("Inserisci il nome della stella: ",true);
+        double massa = InputData.readDouble("Inserisci la massa della stella: ");
+        double coordX = 0;
+        double coordY = 0;
+        int id = InputData.readInteger("Inserisci l'id della stella: ");
+        Stella stella = new Stella(nome, massa, coordX, coordY, id);
+
+        
     }
 
-    public int getCollisione(){
+    public int ritornaPercorsoLuna(){
+
+        return 0;
+
+    }
+
+    public int pianetarifLuna(){
         return 0;
     }
 
