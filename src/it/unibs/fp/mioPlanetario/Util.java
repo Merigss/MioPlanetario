@@ -43,7 +43,7 @@ public class Util {
 
     public void aggiungiPianeta(Stella stella){
        String nome=InputData.readNonEmptyString("Inserisci il nome del pianeta che vuoi aggiungere", false);
-        double massa=InputData.readDoubleWithMinimum("Inserisci la massa del pianeta", 0);
+        double massa=InputData.readDouble("Inserisci la massa del pianeta");
         double coordx=InputData.readDouble("Inserisci la coordinata x");
        double coordy = InputData.readDouble("Inserisci la coordinata y");
         int id= InputData.readInteger("Inserisci l'id del pianeta");
@@ -52,7 +52,7 @@ public class Util {
             return;
         }
 
-        Pianeta pianeta = new Pianeta(nome, massa, coordx, coordy, id);
+        Pianeta pianeta = new Pianeta(nome, massa, coordx, coordy, id, stella);
         stella.addPianeta(pianeta);
         
     }
