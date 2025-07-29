@@ -35,6 +35,7 @@ public class Util {
 
         if (!controllaId(id, stella)) {
             System.out.println(ERRORE_ID_PRESENTE);
+            return;
         }
 
         int idPianetaRif = InputData.readInteger(INSERISCI_ID_PIANETA_RIF);
